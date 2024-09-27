@@ -1,0 +1,19 @@
+object_storage:
+  bucket:
+    type: "FILESYSTEM"
+    config:
+      directory: "./tmp"
+
+scrape_configs:
+  - job_name: 'maas.agent.pprof'
+    scrape_interval: 30s
+    scheme: http
+    static_configs:
+      - targets: ['10.0.0.185:5248']
+    profiling_config:
+      path_prefix: "/profiling/agent"
+      # pprof_config:
+      #   memory:
+      #     enabled: true
+      #     path: "/allocs"
+      #     delta: true
